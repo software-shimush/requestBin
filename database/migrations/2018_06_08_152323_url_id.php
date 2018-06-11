@@ -13,9 +13,11 @@ class UrlId extends Migration
      */
     public function up()
     {
-        Schema::create('url_ids', function (Blueprint $table) {
+        Schema::create('Url_ids', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('username');
             $table->integer('url_id');
+            $table->string('binName');
             $table->timestamps();
         });
         
