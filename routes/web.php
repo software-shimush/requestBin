@@ -14,7 +14,12 @@ use App\url_id;
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::get('createBin', function () {
+    return view('createBin');
+});
+Route::post('urlGenerater', function () {
+    return 'generated';
+});
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
