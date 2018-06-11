@@ -1,5 +1,5 @@
 <?php
-
+use App\url_id;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,3 +23,7 @@ Route::post('urlGenerater', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//Route::get('/url', 'HomeController@makeURL');
+
+Route::get('/url','Url_generatorController@url' );
