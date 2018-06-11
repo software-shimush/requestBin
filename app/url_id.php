@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class url_id extends Model
+class Url_id extends Model
 {
-    
+    protected $table='Url_ids';
 }
