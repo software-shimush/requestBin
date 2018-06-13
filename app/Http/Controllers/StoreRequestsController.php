@@ -74,12 +74,13 @@ class StoreRequestsController extends Controller
         $sr->url_id=$id;
         $sr->IP_Address=$request->ip();
         $sr->method=$request->method();
-        //$req->headers=implode( $request->header('content-type'), ',');
+        $sr->headers= json_encode($request->header());
        // var_dump($request->header());
         $sr->url_content=$request->url();
         
-        $sr->query_params=implode( $request->query(), ',');
+        $sr->query_values=implode( $request->query(), ',');
         $sr->query_keys=implode( $request->keys(), ',');
+        $sr->request_body=json_encode($request->getContent());
         $sr->save();
     }
 
