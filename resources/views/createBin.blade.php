@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Create Request Bin') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ url('/urlGenerater') }}">
+                    <form method="POST" action="{{ url('/url') }}">
                         @csrf
 
                         <div class="form-group row">

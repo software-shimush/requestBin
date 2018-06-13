@@ -17,13 +17,13 @@ Route::get('/', function () {
 Route::get('createBin', function () {
     return view('createBin');
 });
-Route::post('urlGenerater', function () {
-    return 'generated';
-});
+// Route::post('urlGenerater', function () {
+//     return 'generated';
+// });
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
 //Route::get('/url', 'HomeController@makeURL');
 
-Route::get('/url','Url_generatorController@url' );
+Route::post('/url','Url_generatorController@url' );
