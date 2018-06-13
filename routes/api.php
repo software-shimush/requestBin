@@ -16,5 +16,5 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::get('/{id}', 'StoreRequestController@update');
+Route::any('/{id}', 'StoreRequestsController@update');
 
