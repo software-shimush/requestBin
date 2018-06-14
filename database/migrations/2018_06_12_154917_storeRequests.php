@@ -17,11 +17,13 @@ class StoreRequests extends Migration
             $table->increments('id');
             $table->integer('url_id');
             $table->string('IP_Address');
-            $table->string('headers')->default('none');
+            $table->json('headers');
             $table->string('method');
             $table->string('url_content');
-            $table->string('query_params')->default('none');
+            
             $table->string('query_keys')->default('none');
+            $table->string('query_values')->default('none');
+            $table->json('request_body');
             $table->timestamps();
         });
     }
