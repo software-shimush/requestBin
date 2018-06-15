@@ -26,4 +26,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 //Route::get('/url', 'HomeController@makeURL');
 
-Route::post('/urlGenerater','Url_generatorController@url' );
+Route::post('/urlGenerater','Url_generatorController@makeUrl' );
+
+Route::any('/getBins', 'StoreRequestsController@index');
+
+Route::domain('{binName}.{User}.requestBin.local')->group(function () {
+    Route::any('{binName}.{User}', 'StoreRequestsController@store');
+    });

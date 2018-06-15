@@ -15,7 +15,7 @@
                             <label for="name" class="col-sm-4 col-form-label text-md-right">{{ __('Name your Bin') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="email" value="{{ old('name') }}" required autofocus>
+                                <input id="binName" type="text" class="form-control" name="binName" value="{{ old('name') }}" required autofocus>
                             </div>
                         </div>
 
