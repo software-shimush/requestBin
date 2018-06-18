@@ -11,9 +11,9 @@ use App\url_id;
 |
 */
 
-//Route::get('/', function () {
-   // return view('welcome');
-//});
+Route::get('/', function () {
+   return view('welcome');
+});
 Route::get('createBin', function () {
     return view('createBin');
 });
