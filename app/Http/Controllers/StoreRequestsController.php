@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\storeRequest;
+use App\requestHub;
 use App\domain;
 use Illuminate\Support\Facades\Auth;
 
@@ -43,14 +43,19 @@ class StoreRequestsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $binName, $User)
+    public function store(Request $request,$binName,$User)
     {
-         //validate that the user and binName exists in table domains
+        //$binName=Route::current()->parameter('binName');
+        //$User=Route::current()->parameter('User');
 
-         if(domain::where('user',"=",$User)& (domain::where('binName', "=", $binName))) {
+
+         //validate that the user and binName exists in table domains
+        $validate1=domain::where('user',$User);
+        $validate2=domain::where('binName', $binName);
+         if(!empty($validate1)&&(!empty($validate2))) {
             //store request
-            $sr=new storeRequest;
-    
+            $sr=new requestHub;
+            
             $sr->url_id=$binName.".".$User;
             $sr->IP_Address=$request->ip();
             $sr->method=$request->method();
@@ -65,8 +70,8 @@ class StoreRequestsController extends Controller
             echo "Request saved!";
             }
             else {
-                echo "Error! subdomain does not exist";
-            }
+              echo "Error! subdomain does not exist";
+           }
     }
 
     /**

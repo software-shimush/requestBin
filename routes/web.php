@@ -11,9 +11,9 @@ use App\url_id;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+   // return view('welcome');
+//});
 Route::get('createBin', function () {
     return view('createBin');
 });
@@ -31,5 +31,5 @@ Route::post('/urlGenerater','Url_generatorController@makeUrl' );
 Route::any('/getBins', 'StoreRequestsController@index');
 
 Route::domain('{binName}.{User}.requestBin.local')->group(function () {
-    Route::any('{binName}.{User}', 'StoreRequestsController@store');
+    Route::any('/', 'StoreRequestsController@store');
     });
