@@ -26,6 +26,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 //Route::get('/url', 'HomeController@makeURL');
 
+
 Route::post('/urlGenerater','Url_generatorController@makeUrl' );
 
 Route::get('/getBins', 'StoreRequestsController@index');
