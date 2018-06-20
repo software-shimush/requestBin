@@ -16,25 +16,31 @@ class StoreRequestsController extends Controller
      */
     public function index()
     {   //get the binNames for the signed in user
-        echo "You have these bins : ";
+      //  echo "You have these bins : ";
         $loggedIn=Auth::user();
         $user=$loggedIn['name'];
         $bins=domain::where('user',"=" ,$user)->get();
-       
+        return view('show_bins')->with('bins', $bins);
+    }
+
         //var_dump($bins);
-       foreach($bins as $bin){
+      /* foreach($bins as $bin){
            //var_dump($bin);
-           echo  $bin['binName']." ,     ";
+           echo  $bin['binName'].".".$user.".";
        }
-        }
-    
+
+       
+    */
     public function getRequests($binName,$User)
     {  //get all request data for the given domain
         $domain=$binName.".".$User;
         //echo $domain;
         $requests=requestHub::where('url_id',"=",$domain )->get();
+        
         //var_dump( $myRequests);
-        //foreach($myRequests as $one){
+        foreach($requests as $one){
+            var_dump($one['headers']);
+        }
         /*  echo "  Request: ";
           echo( " ,domain: ". $one['url_id']);
           echo( " ,header:  ". $one['header']);
