@@ -10,10 +10,11 @@ use App\url_id;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-   return view('welcome');
-});
+// Route::domain('requestBin.local')->group(function () {
+// Route::get('/', function () {
+//    return view('home');
+// });
+// });
 Route::get('createBin', function () {
     return view('createBin');
 });
@@ -34,3 +35,6 @@ Route::get('/getBins', 'StoreRequestsController@index');
 Route::domain('{binName}.{User}.requestBin.local')->group(function () {
     Route::any('/', 'StoreRequestsController@store');
     });
+Route::get('/', function () {
+   return view('home');
+});
