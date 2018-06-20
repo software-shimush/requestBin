@@ -15,16 +15,45 @@ class StoreRequestsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   //get the url_ids for the signed in user
-        echo "You have these bins";
-        $bins=domain::where('user',"=" ,Auth::user())->get();
-       foreach($bins as $bin){
-           echo  $bin['binName']." ,     ";
+    {   //get the binNames for the signed in user
+      
+        $loggedIn=Auth::user();
+        $user=$loggedIn['name'];
+        $bins=domain::where('user',"=" ,$user)->get();
+        return view('show_bins')->with('bins', $bins);
+    }
+
+        //var_dump($bins);
+      /* foreach($bins as $bin){
+           //var_dump($bin);
+           echo  $bin['binName'].".".$user.".";
        }
-        }
-    
-    public function getRequests()
-    {  //get all request data for the given ul_id (bin number)
+
+       
+    */
+    public function getRequests($binName,$User)
+    {  //get all request data for the given domain
+        $domain=$binName.".".$User;
+        //echo $domain;
+        $requests=requestHub::where('url_id',"=",$domain )->get();
+        
+        //var_dump( $myRequests);
+       // foreach($requests as $one){
+           // var_dump($one['headers']);
+        //}
+        /*  echo "  Request: ";
+          echo( " ,domain: ". $one['url_id']);
+          echo( " ,header:  ". $one['header']);
+          echo( " , method :". $one['method']);
+          echo ( " , url:  ". $one['url_content']);
+          echo ( " , request body: ". $one['request_body']);
+          echo ( " , query keys: ". $one['query_keys']);
+          echo ( " , query values: ". $one['query_values']);
+          */
+          return view('show_requests')->with('requests', $requests );
+        //}
+       
+       
 
     }
     /**
