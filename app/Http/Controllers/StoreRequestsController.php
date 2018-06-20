@@ -16,7 +16,7 @@ class StoreRequestsController extends Controller
      */
     public function index()
     {   //get the binNames for the signed in user
-      //  echo "You have these bins : ";
+      
         $loggedIn=Auth::user();
         $user=$loggedIn['name'];
         $bins=domain::where('user',"=" ,$user)->get();
@@ -38,9 +38,9 @@ class StoreRequestsController extends Controller
         $requests=requestHub::where('url_id',"=",$domain )->get();
         
         //var_dump( $myRequests);
-        foreach($requests as $one){
-            var_dump($one['headers']);
-        }
+       // foreach($requests as $one){
+           // var_dump($one['headers']);
+        //}
         /*  echo "  Request: ";
           echo( " ,domain: ". $one['url_id']);
           echo( " ,header:  ". $one['header']);
@@ -53,7 +53,7 @@ class StoreRequestsController extends Controller
           return view('show_requests')->with('requests', $requests );
         //}
        
-        //echo $myRequests['url_id'];
+       
 
     }
     /**
