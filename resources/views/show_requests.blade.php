@@ -4,12 +4,12 @@
 <tr>
 
     <th>Domain</th>
-    <th>Headers</th>
     <th>Method</th>
     <th>Url</th>
     <th>Request Body</th>
     <th>Query Keys</th>
     <th>Query Value</th>
+    <th>Headers</th>
 </tr>
 
 @foreach ($requests as $request)
@@ -25,6 +25,7 @@
  <td><?php echo $request['request_body']; ?> </td>
  <td><?php echo $request['query_keys']; ?> </td>
  <td><?php echo $request['query_values']; ?> </td>
+ <td><?php echo $request['headers']; ?> </td>
 </tr>
 @endforeach
 </table>
