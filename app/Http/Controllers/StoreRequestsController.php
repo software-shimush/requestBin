@@ -26,6 +26,19 @@ class StoreRequestsController extends Controller
         return view('show_bins')->with('bins', $bins);
        
     }
+    public function getBins($user)
+    {   //get the binNames for the user subdomain
+      
+        //$loggedIn=Auth::user();
+        //$user=$loggedIn['name'];
+
+        $bins=domain::where('user',"=" ,$user)->get();
+       
+        //sends to show_bins.blade, passing in bins=$bins
+        return view('show_bins')->with('bins', $bins);
+       
+    }
+
 
         
       /* foreach($bins as $bin){
@@ -46,16 +59,42 @@ class StoreRequestsController extends Controller
     }
 //getting headers from subdomain, displays each key value pair of the header
     public function getHeaders($binName,$User){
-        //echo "Headers: ";
-        //echo "<br>";
-        //$loggedIn=Auth::user();
-        //$User=$loggedIn['name'];
+      
         $domain=$binName.".".$User;
         $requests=requestHub::where('url_id',"=",$domain )->get();
         foreach($requests as $one){
             $arrays = json_decode($one['headers'], TRUE);
-            //var_dump($arrays);
-            
+            echo $one['method']." ";
+            echo $one['url_content'];
+            echo "<br>";
+            echo "HEADERS";
+            echo "<br>";
+            foreach ($arrays as $key=>$value){
+                  //return view('show_headers')->withKey($key)->withValue( $value[0] );
+                echo $key. ": ";
+                echo $value[0];
+                echo "<br>";
+           }
+           echo "end of header";
+           echo "<br>";
+           echo "<br>";
+        }
+        
+    }
+//get all headers for a given bin
+ public function headers($binName){
+        
+        $loggedIn=Auth::user();
+        $User=$loggedIn['name'];
+        $domain=$binName.".".$User;
+        $requests=requestHub::where('url_id',"=",$domain )->get();
+        foreach($requests as $one){
+            $arrays = json_decode($one['headers'], TRUE); 
+            echo $one['method']." ";
+            echo $one['url_content'];
+            echo "<br>";
+            echo "HEADERS";
+            echo "<br>";
             foreach ($arrays as $key=>$value){
                   //return view('show_headers')->withKey($key)->withValue( $value[0] );
                 echo $key. ": ";
@@ -69,29 +108,71 @@ class StoreRequestsController extends Controller
         
     }
 
- public function headers($binName){
-        //echo "Headers: ";
-        //echo "<br>";
-        $loggedIn=Auth::user();
-        $User=$loggedIn['name'];
-        $domain=$binName.".".$User;
-        $requests=requestHub::where('url_id',"=",$domain )->get();
-        foreach($requests as $one){
-            $arrays = json_decode($one['headers'], TRUE);
-            //var_dump($arrays);
-            
+    //get  headers for a given request from double subdomain, binName and user coming from the url
+ public function headersOfRequest($binName,$user, $id){
+
+    $request=requestHub::where(
+        'id',"=",$id 
+)->get();
+    foreach($request as $one){
+        $arrays = json_decode($one['headers'], TRUE); 
+        echo $one['method']." ";
+        echo $one['url_content'];
+        echo "<br>";
+        echo "HEADERS";
+        echo "<br>";
+        
+        foreach ($arrays as $key=>$value){
+              //return view('show_headers')->withKey($key)->withValue( $value[0] );
+            echo $key. ": ";
+            echo $value[0];
+            echo "<br>";
+       }
+    }
+    }
+//get  headers for a given request from main domain
+    public function headersOfRequest2( $id){
+        
+       
+        $request=requestHub::where(
+            'id',"=",$id 
+        )->get();
+        foreach($request as $one){
+            $arrays = json_decode($one['headers'], TRUE); 
+            echo $one['method']." ";
+            echo $one['url_content'];
+            echo "<br>";
+            echo "HEADERS";
+            echo "<br>";
             foreach ($arrays as $key=>$value){
-                  //return view('show_headers')->withKey($key)->withValue( $value[0] );
+                 
                 echo $key. ": ";
                 echo $value[0];
                 echo "<br>";
            }
-           echo "end of header";
-           echo "<br>";
-           echo "<br>";
-        }
-        
+        }   
     }
+//get  headers for a given request from one subdomain
+public function headersOfRequest3($user, $id){
+     $request=requestHub::where(
+         'id',"=",$id 
+     )->get();
+     foreach($request as $one){
+         $arrays = json_decode($one['headers'], TRUE); 
+         echo $one['method']." ";
+        echo $one['url_content'];
+        echo "<br>";
+        echo "HEADERS";
+        echo "<br>";
+         foreach ($arrays as $key=>$value){
+               
+             echo $key. ": ";
+             echo $value[0];
+             echo "<br>";
+        }
+     }   
+ }
+
 
 
 //getting requests from the subdomain
