@@ -19,8 +19,10 @@ class StoreRequestsController extends Controller
       
         $loggedIn=Auth::user();
         $user=$loggedIn['name'];
+
         $bins=domain::where('user',"=" ,$user)->get();
-        
+       
+        //sends to show_bins.blade, passing in bins=$bins
         return view('show_bins')->with('bins', $bins);
        
     }
@@ -39,9 +41,10 @@ class StoreRequestsController extends Controller
         $User=$loggedIn['name'];
         $domain=$binName.".".$User;
         $requests=requestHub::where('url_id',"=",$domain )->get();
+        //sends to show_requests.blade, passing in requests=$requests
         return view('show_requests')->with('requests', $requests );
     }
-//getting headers from main, displays each key value pair of the header
+//getting headers from subdomain, displays each key value pair of the header
     public function getHeaders($binName,$User){
         //echo "Headers: ";
         //echo "<br>";
@@ -65,6 +68,31 @@ class StoreRequestsController extends Controller
         }
         
     }
+
+ public function headers($binName){
+        //echo "Headers: ";
+        //echo "<br>";
+        $loggedIn=Auth::user();
+        $User=$loggedIn['name'];
+        $domain=$binName.".".$User;
+        $requests=requestHub::where('url_id',"=",$domain )->get();
+        foreach($requests as $one){
+            $arrays = json_decode($one['headers'], TRUE);
+            //var_dump($arrays);
+            
+            foreach ($arrays as $key=>$value){
+                  //return view('show_headers')->withKey($key)->withValue( $value[0] );
+                echo $key. ": ";
+                echo $value[0];
+                echo "<br>";
+           }
+           echo "end of header";
+           echo "<br>";
+           echo "<br>";
+        }
+        
+    }
+
 
 //getting requests from the subdomain
     public function getRequests($binName,$User)

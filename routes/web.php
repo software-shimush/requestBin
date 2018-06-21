@@ -39,5 +39,6 @@ Route::domain('{binName}.{User}.requestBin.local')->group(function () {
         return view('home');
     });
 
-Route::get('/fetchRequests/{binName}', 'StoreRequestsController@fetchRequests');
+Route::get('/getRequests/{binName}', 'StoreRequestsController@fetchRequests');
+Route::get('/getRequests/{binName}/headers','StoreRequestsController@headers' );
 
