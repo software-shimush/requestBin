@@ -32,6 +32,8 @@ Route::domain('{binName}.{User}.requestBin.local')->group(function () {
     Route::any('/', 'StoreRequestsController@store');
      Route::any('/getRequests', 'StoreRequestsController@getRequests');
      Route::get('/getHeaders', 'StoreRequestsController@getHeaders' );
+     Route::get('/headers/{id}', 'StoreRequestsController@headersOfRequest');
+     
     });
     Route::get('/', function () {
         return view('home');
@@ -40,7 +42,12 @@ Route::domain('{binName}.{User}.requestBin.local')->group(function () {
 
 Route::get('/getRequests/{binName}', 'StoreRequestsController@fetchRequests');
 Route::get('/getRequests/{binName}/headers','StoreRequestsController@headers' );
+Route::get('/getRequests/headers/{id}', 'StoreRequestsController@headersOfRequest2');
 
+Route::domain('{User}.requestBin.local')->group(function () {
+    Route::any('/', 'StoreRequestsController@getBins');
+    Route::get('/headers/{id}', 'StoreRequestsController@headersOfRequest3');
+});
 
 
 

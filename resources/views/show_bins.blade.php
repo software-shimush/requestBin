@@ -10,11 +10,19 @@
         <div class="col-md-8">
             <ul>
             @foreach ($bins as $bin)
-                <div class="row">
-                <li class= "binLi"><div class="col-sm-6"><?php echo $bin['binName']; ?></div>
-                <div class="col-sm-6"> <a  class="btn" href="getRequests/<?php echo ''.$bin['binName'];?> ">
-                {{ __('View Requests') }}
-                                            </a></div>
+                <div class="row justify-content-center">
+                <li class= "binLi" style="width:100%">
+                <div class="col-md-6">
+                        <?= $bin['binName']; ?>
+                    
+                    </div>
+                    <div class="col-md-6">
+                        <a href="getRequests/<?php echo ''.$bin['binName'];?> ">
+                            <button type="submit" name="submit" id="<?php echo $bin['binName'];?>"  value="">
+                                VIEW REQUESTS
+                            </button>
+                        </a>
+                    </div>
                 </li>
                 </div>  
             @endforeach
