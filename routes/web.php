@@ -32,9 +32,12 @@ Route::get('/getBins', 'StoreRequestsController@index');
 Route::domain('{binName}.{User}.requestBin.local')->group(function () {
     Route::any('/', 'StoreRequestsController@store');
      Route::any('/getRequests', 'StoreRequestsController@getRequests');
-    // Route::any('/', 'StoreRequestsController@store');
+     Route::get('/getHeaders', 'StoreRequestsController@getHeaders' );
     });
 
     Route::get('/', function () {
         return view('home');
     });
+
+Route::get('/fetchRequests/{binName}', 'StoreRequestsController@fetchRequests');
+

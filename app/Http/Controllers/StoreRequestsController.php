@@ -20,36 +20,59 @@ class StoreRequestsController extends Controller
         $loggedIn=Auth::user();
         $user=$loggedIn['name'];
         $bins=domain::where('user',"=" ,$user)->get();
+        
         return view('show_bins')->with('bins', $bins);
+       
     }
 
-        //var_dump($bins);
+        
       /* foreach($bins as $bin){
            //var_dump($bin);
            echo  $bin['binName'].".".$user.".";
        }
 
        
-    */
+    */  
+    //getting requests from the main domain
+    public function fetchRequests($binName){
+        $loggedIn=Auth::user();
+        $User=$loggedIn['name'];
+        $domain=$binName.".".$User;
+        $requests=requestHub::where('url_id',"=",$domain )->get();
+        return view('show_requests')->with('requests', $requests );
+    }
+//getting headers from main, displays each key value pair of the header
+    public function getHeaders($binName,$User){
+        //echo "Headers: ";
+        //echo "<br>";
+        //$loggedIn=Auth::user();
+        //$User=$loggedIn['name'];
+        $domain=$binName.".".$User;
+        $requests=requestHub::where('url_id',"=",$domain )->get();
+        foreach($requests as $one){
+            $arrays = json_decode($one['headers'], TRUE);
+            //var_dump($arrays);
+            
+            foreach ($arrays as $key=>$value){
+                  //return view('show_headers')->withKey($key)->withValue( $value[0] );
+                echo $key. ": ";
+                echo $value[0];
+                echo "<br>";
+           }
+           echo "end of header";
+           echo "<br>";
+           echo "<br>";
+        }
+        
+    }
+
+//getting requests from the subdomain
     public function getRequests($binName,$User)
     {  //get all request data for the given domain
         $domain=$binName.".".$User;
         //echo $domain;
         $requests=requestHub::where('url_id',"=",$domain )->get();
         
-        //var_dump( $myRequests);
-       // foreach($requests as $one){
-           // var_dump($one['headers']);
-        //}
-        /*  echo "  Request: ";
-          echo( " ,domain: ". $one['url_id']);
-          echo( " ,header:  ". $one['header']);
-          echo( " , method :". $one['method']);
-          echo ( " , url:  ". $one['url_content']);
-          echo ( " , request body: ". $one['request_body']);
-          echo ( " , query keys: ". $one['query_keys']);
-          echo ( " , query values: ". $one['query_values']);
-          */
           return view('show_requests')->with('requests', $requests );
         //}
        
