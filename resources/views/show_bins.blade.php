@@ -1,18 +1,27 @@
 @extends('layouts.app')
 @section('content')
-<ul>
-@foreach ($bins as $bin)
 
-    <li><?php echo $bin['binName']; ?>  
-   <a href= "getRequests/<?php echo ''.$bin['binName']; ?>" > <button type="submit" name="submit" id="<?php echo $bin['binName'];?>"  value="">VIEW REQUESTS</button></a>
-    </li>
-    
-                               
-    
-     
-                                
-    
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h1> You're Bins </h1>
+        </div>
+        </div>
+        <div class="row justify-content-center">
+        <div class="col-md-8">
+            <ul>
+            @foreach ($bins as $bin)
+                <div class="row">
+                <li class= "binLi"><div class="col-sm-6"><?php echo $bin['binName']; ?></div>
+                <div class="col-sm-6"> <a  class="btn" href="getRequests/<?php echo ''.$bin['binName'];?> ">
+                {{ __('View Requests') }}
+                                            </a></div>
+                </li>
+                </div>  
+            @endforeach
+            </ul>
+        </div>
+    </div>
+</div>
 
-@endforeach
-</ul>
 @endsection
