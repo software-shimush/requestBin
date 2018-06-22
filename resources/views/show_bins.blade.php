@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <h1> You're Bins </h1>
+            <h1> Your Bins </h1>
         </div>
         </div>
         <div class="row justify-content-center">
