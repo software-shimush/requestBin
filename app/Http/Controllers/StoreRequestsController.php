@@ -14,6 +14,8 @@ class StoreRequestsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     //get the binNames for the signed in user
     public function index()
     {   //get the binNames for the signed in user
       
@@ -26,11 +28,10 @@ class StoreRequestsController extends Controller
         return view('show_bins')->with('bins', $bins);
        
     }
+
+    //get the binNames for the user subdomain
     public function getBins($user)
-    {   //get the binNames for the user subdomain
-      
-        //$loggedIn=Auth::user();
-        //$user=$loggedIn['name'];
+    {   
 
         $bins=domain::where('user',"=" ,$user)->get();
        
@@ -57,6 +58,16 @@ class StoreRequestsController extends Controller
         //sends to show_requests.blade, passing in requests=$requests
         return view('show_requests')->with('requests', $requests );
     }
+
+    //getting requests from user subdomain
+    public function fetchRequests2($user,$binName){
+        
+        $domain=$binName.".".$user;
+        $requests=requestHub::where('url_id',"=",$domain )->get();
+        //sends to show_requests.blade, passing in requests=$requests
+        return view('show_requests')->with('requests', $requests );
+    }
+    
 //getting headers from subdomain, displays each key value pair of the header
     public function getHeaders($binName,$User){
       
@@ -64,6 +75,7 @@ class StoreRequestsController extends Controller
         $requests=requestHub::where('url_id',"=",$domain )->get();
         foreach($requests as $one){
             $arrays = json_decode($one['headers'], TRUE);
+           
             echo $one['method']." ";
             echo $one['url_content'];
             echo "<br>";
@@ -96,7 +108,7 @@ class StoreRequestsController extends Controller
             echo "HEADERS";
             echo "<br>";
             foreach ($arrays as $key=>$value){
-                  //return view('show_headers')->withKey($key)->withValue( $value[0] );
+                  
                 echo $key. ": ";
                 echo $value[0];
                 echo "<br>";
@@ -116,18 +128,18 @@ class StoreRequestsController extends Controller
 )->get();
     foreach($request as $one){
         $arrays = json_decode($one['headers'], TRUE); 
-        echo $one['method']." ";
+        return view('show_header')->with('header', $arrays );
+        /*echo $one['method']." ";
         echo $one['url_content'];
         echo "<br>";
         echo "HEADERS";
         echo "<br>";
         
         foreach ($arrays as $key=>$value){
-              //return view('show_headers')->withKey($key)->withValue( $value[0] );
             echo $key. ": ";
             echo $value[0];
             echo "<br>";
-       }
+       }*/
     }
     }
 //get  headers for a given request from main domain
@@ -139,6 +151,8 @@ class StoreRequestsController extends Controller
         )->get();
         foreach($request as $one){
             $arrays = json_decode($one['headers'], TRUE); 
+            return view('show_header')->with('header', $arrays );
+        /*
             echo $one['method']." ";
             echo $one['url_content'];
             echo "<br>";
@@ -149,7 +163,7 @@ class StoreRequestsController extends Controller
                 echo $key. ": ";
                 echo $value[0];
                 echo "<br>";
-           }
+           } */
         }   
     }
 //get  headers for a given request from one subdomain
@@ -159,6 +173,9 @@ public function headersOfRequest3($user, $id){
      )->get();
      foreach($request as $one){
          $arrays = json_decode($one['headers'], TRUE); 
+         return view('show_header')->with('header', $arrays );
+        /*
+         
          echo $one['method']." ";
         echo $one['url_content'];
         echo "<br>";
@@ -169,7 +186,7 @@ public function headersOfRequest3($user, $id){
              echo $key. ": ";
              echo $value[0];
              echo "<br>";
-        }
+        } */
      }   
  }
 
