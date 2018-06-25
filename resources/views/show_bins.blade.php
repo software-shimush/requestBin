@@ -3,7 +3,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <h1> You're Bins </h1>
+            <h1> Your Bins </h1>
         </div>
         </div>
         <div class="row justify-content-center">
@@ -30,4 +30,8 @@
         </div>
     </div>
 </div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9efc7f10f3f80c20829949200a04afd1950fe7a4
 @endsection
