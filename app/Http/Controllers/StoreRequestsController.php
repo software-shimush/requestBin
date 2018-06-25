@@ -51,17 +51,18 @@ class StoreRequestsController extends Controller
     */  
     //getting requests from the main domain
     public function fetchRequests($binName){
+
         $loggedIn=Auth::user();
         $User=$loggedIn['name'];
         $domain=$binName.".".$User;
+        
         $requests=requestHub::where('url_id',"=",$domain )->get();
         //sends to show_requests.blade, passing in requests=$requests
         return view('show_requests')->with('requests', $requests );
     }
 
-    //getting requests from user subdomain
+    //getting requests from one subdomain
     public function fetchRequests2($user,$binName){
-        
         $domain=$binName.".".$user;
         $requests=requestHub::where('url_id',"=",$domain )->get();
         //sends to show_requests.blade, passing in requests=$requests
