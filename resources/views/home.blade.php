@@ -13,8 +13,9 @@
                             {{ session('status') }}
                         </div>
                     @endif
+                    Welcome to Request Bin
 
-                    You are logged in!
+                
                 </div>
             </div>
         </div>
