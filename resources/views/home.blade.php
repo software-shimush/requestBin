@@ -13,8 +13,8 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    You are logged in!
+                Welcome to our website Requests Bin. Here you can create a personal url to store all your requests and view them at a later time.
+                   
                 </div>
             </div>
         </div>
