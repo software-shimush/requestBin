@@ -61,7 +61,6 @@ class StoreRequestsController extends Controller
 
     //getting requests from user subdomain
     public function fetchRequests2($user,$binName){
-        
         $domain=$binName.".".$user;
         $requests=requestHub::where('url_id',"=",$domain )->get();
         //sends to show_requests.blade, passing in requests=$requests
