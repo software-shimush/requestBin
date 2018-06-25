@@ -32,23 +32,18 @@ class StoreRequestsController extends Controller
     //get the binNames for the user subdomain
     public function getBins($user)
     {   
-
+        if(Auth::user()) {
         $bins=domain::where('user',"=" ,$user)->get();
        
         //sends to show_bins.blade, passing in bins=$bins
         return view('show_bins')->with('bins', $bins);
-       
+        }
+        else{
+            return view('auth/login');
+        }
     }
 
 
-        
-      /* foreach($bins as $bin){
-           //var_dump($bin);
-           echo  $bin['binName'].".".$user.".";
-       }
-
-       
-    */  
     //getting requests from the main domain
     public function fetchRequests($binName){
 
@@ -63,15 +58,20 @@ class StoreRequestsController extends Controller
 
     //getting requests from one subdomain
     public function fetchRequests2($user,$binName){
+        if(Auth::user()) {
         $domain=$binName.".".$user;
         $requests=requestHub::where('url_id',"=",$domain )->get();
         //sends to show_requests.blade, passing in requests=$requests
         return view('show_requests')->with('requests', $requests );
     }
+    else{
+        return view('auth/login');
+    }
+    }
     
 //getting headers from subdomain, displays each key value pair of the header
     public function getHeaders($binName,$User){
-      
+    if(Auth::user()) {
         $domain=$binName.".".$User;
         $requests=requestHub::where('url_id',"=",$domain )->get();
         foreach($requests as $one){
@@ -92,7 +92,12 @@ class StoreRequestsController extends Controller
            echo "<br>";
            echo "<br>";
         }
-        
+        }
+
+    else{
+    return view('auth/login');
+    }
+   
     }
 //get all headers for a given bin
  public function headers($binName){
@@ -123,24 +128,18 @@ class StoreRequestsController extends Controller
 
     //get  headers for a given request from double subdomain, binName and user coming from the url
  public function headersOfRequest($binName,$user, $id){
-
+    if(Auth::user()) {
     $request=requestHub::where(
         'id',"=",$id 
 )->get();
     foreach($request as $one){
         $arrays = json_decode($one['headers'], TRUE); 
         return view('show_header')->with('header', $arrays );
-        /*echo $one['method']." ";
-        echo $one['url_content'];
-        echo "<br>";
-        echo "HEADERS";
-        echo "<br>";
         
-        foreach ($arrays as $key=>$value){
-            echo $key. ": ";
-            echo $value[0];
-            echo "<br>";
-       }*/
+        }
+    }
+    else{
+        return view('auth/login');
     }
     }
 //get  headers for a given request from main domain
@@ -153,22 +152,12 @@ class StoreRequestsController extends Controller
         foreach($request as $one){
             $arrays = json_decode($one['headers'], TRUE); 
             return view('show_header')->with('header', $arrays );
-        /*
-            echo $one['method']." ";
-            echo $one['url_content'];
-            echo "<br>";
-            echo "HEADERS";
-            echo "<br>";
-            foreach ($arrays as $key=>$value){
-                 
-                echo $key. ": ";
-                echo $value[0];
-                echo "<br>";
-           } */
+        
         }   
     }
 //get  headers for a given request from one subdomain
 public function headersOfRequest3($user, $id){
+    if(Auth::user()) {
      $request=requestHub::where(
          'id',"=",$id 
      )->get();
@@ -188,7 +177,11 @@ public function headersOfRequest3($user, $id){
              echo $value[0];
              echo "<br>";
         } */
-     }   
+        } 
+    }
+    else{
+        return view('auth/login');
+    }  
  }
 
 
@@ -196,12 +189,16 @@ public function headersOfRequest3($user, $id){
 //getting requests from the subdomain
     public function getRequests($binName,$User)
     {  //get all request data for the given domain
+        if(Auth::user()) {
         $domain=$binName.".".$User;
         //echo $domain;
         $requests=requestHub::where('url_id',"=",$domain )->get();
         
           return view('show_requests')->with('requests', $requests );
-        //}
+        }
+        else{
+            return view('auth/login');
+        }
        
        
 
