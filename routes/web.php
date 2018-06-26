@@ -50,7 +50,6 @@ Route::domain('{User}.requestBin.local')->group(function () {
 Route::get('/getRequests/{binName}', 'StoreRequestsController@fetchRequests');
 Route::get('/getRequests/{binName}/headers','StoreRequestsController@headers' );
 Route::get('/getRequests/headers/{id}', 'StoreRequestsController@headersOfRequest2');
-
 Route::get('/', 'HomeController@index');
 
 
