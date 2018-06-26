@@ -1,3 +1,5 @@
+
+
 @extends('layouts.app')
 @section('content')
 <table class="table table-striped table-hover"> 
@@ -9,7 +11,8 @@
     <th>Request Body</th>
     <th>Query Keys</th>
     <th>Query Value</th>
-    <th></th>
+    <th>Headers</th>
+    <th>Delete</th>
     
     
 </tr>
@@ -27,12 +30,17 @@
  <td><?php echo $request['query_keys']; ?> </td>
  <td><?php echo $request['query_values']; ?> </td>
  <td> <a href= "headers/<?php echo $request['id'];?> " > <button type="submit" name="submit" id="<?php echo $request['id'];?>"  value="">VIEW HEADERS</button></a></td>
+ 
+ <td><form action="" method="post"> <button type="submit" name="sub" id="<?php echo $request['id'];?>"  value="">DELETE</button></form></td>  
+ 
+ 
 
    
- 
 
 @endforeach
 </table>
+
+
 @endsection
 
 

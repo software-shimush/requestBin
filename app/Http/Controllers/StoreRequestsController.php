@@ -18,7 +18,7 @@ class StoreRequestsController extends Controller
      //get the binNames for the signed in user
     public function index()
     {   //get the binNames for the signed in user
-      
+        if(Auth::user()) {
         $loggedIn=Auth::user();
         $user=$loggedIn['name'];
 
@@ -26,6 +26,10 @@ class StoreRequestsController extends Controller
        
         //sends to show_bins.blade, passing in bins=$bins
         return view('show_bins')->with('bins', $bins);
+    }
+    else{
+        return view('auth/login');
+    }
        
     }
 
@@ -292,6 +296,8 @@ public function headersOfRequest3($user, $id){
      */
     public function destroy($id)
     {
-        //
-    }
+        $destroyPost=RequestHub::find($id); 
+        $destroyPost->delete();
+        
+}
 }
