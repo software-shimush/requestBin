@@ -2,7 +2,7 @@
 
 namespace App\Listeners;
 
-use App\Events\Request;
+use App\Events\Requests;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
@@ -24,8 +24,8 @@ class RequestListener implements ShouldQueue
      * @param  Request  $event
      * @return void
      */
-    public function handle(Request $event)
+    public function handle(Requests $event)
     {
-        //
+         dd( $event);
     }
 }

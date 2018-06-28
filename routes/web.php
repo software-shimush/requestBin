@@ -32,8 +32,8 @@ Route::domain('{binName}.{User}.requestBin.local')->group(function () {
     Route::any('/', 'StoreRequestsController@store');
       
      Route::any('/getRequests', 'StoreRequestsController@getRequests');
-     Route::get('/getHeaders', 'StoreRequestsController@getHeaders' );
-     Route::get('/headers/{id}', 'StoreRequestsController@headersOfRequest');
+     Route::get('/getHeaders', 'HeadersController@getHeaders' );
+     Route::get('/headers/{id}', 'HeadersController@headersOfRequest');
      
     });
     
@@ -43,17 +43,21 @@ Route::domain('{User}.requestBin.local')->group(function () {
 
     Route::get('/', 'StoreRequestsController@getBins');
     Route::get('/getRequests/{binName}', 'StoreRequestsController@fetchRequests2');
-    Route::get('/headers/{id}', 'StoreRequestsController@headersOfRequest3');
+    Route::get('/headers/{id}', 'HeadersController@headersOfRequest3');
     
 });
 
 Route::get('/getRequests/{binName}', 'StoreRequestsController@fetchRequests');
-Route::get('/getRequests/{binName}/headers','StoreRequestsController@headers' );
-Route::get('/getRequests/headers/{id}', 'StoreRequestsController@headersOfRequest2');
+Route::get('/getRequests/{binName}/headers','HeadersController@headers' );
+Route::get('/getRequests/headers/{id}', 'HeadersController@headersOfRequest2');
 
 
 Route::any('/delete/{id}','StoreRequestsController@destroy' );
 
+//Route::get('/listen', function(){
+    //return view('liveRequest')
+//});
+Route::view('/listen','liveRequest');
 Route::get('/', 'HomeController@index');
 
 
