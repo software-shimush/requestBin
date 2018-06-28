@@ -52,12 +52,6 @@ if (token) {
      broadcaster: 'pusher',
      key: "84e99f436cb7aec3bfd6",
      cluster: 'mt1',
-     encrypted: true
+     encrypted: false
  });
 
- Echo.channel('Live_requests')
-    .listen('request', (e) => {
-        console.log(e.request.headers);
-        console.log('listening');
-        
-    });

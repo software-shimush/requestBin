@@ -18,7 +18,16 @@ window.Vue = require('vue');
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    created(){
+        Echo.channel('Live_requests')
+        .listen('request', (e) => {
+            //console.log(e.request.headers);
+            console.log(e);
+            
+        });
+    
+    }
 });
 
 

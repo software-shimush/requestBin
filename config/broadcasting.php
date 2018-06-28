@@ -46,7 +46,7 @@ return [
             'app_id' => '551087',
             'options' => [
                 'cluster' => 'mt1',
-                'encrypted' => true,
+                'encrypted' => false,
             ],
         ],
 
