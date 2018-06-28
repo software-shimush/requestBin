@@ -25,18 +25,27 @@ return [
     | Here you may define all of the broadcast connections that will be used
     | to broadcast events to other systems or over websockets. Samples of
     | each available type of connection are provided inside this array.
-    |
+    |'pusher' => [
+            'driver' => 'pusher',
+            'key' => env('12345'),
+            'secret' => env('requestbin'),
+            'app_id' => env('requestbin'),
+            'options' => [
+                'cluster' => env('PUSHER_APP_CLUSTER'),
+                'encrypted' => true,
+            ],
+        ],
     */
 
     'connections' => [
 
         'pusher' => [
             'driver' => 'pusher',
-            'key' => env('PUSHER_APP_KEY'),
-            'secret' => env('PUSHER_APP_SECRET'),
-            'app_id' => env('PUSHER_APP_ID'),
+            'key' => '84e99f436cb7aec3bfd6',
+            'secret' =>  'f6f73b73d3fb90b7ddf1',
+            'app_id' => '551087',
             'options' => [
-                'cluster' => env('PUSHER_APP_CLUSTER'),
+                'cluster' => 'mt1',
                 'encrypted' => true,
             ],
         ],
