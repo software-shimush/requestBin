@@ -15,6 +15,7 @@ class StoreRequests extends Migration
     {
         Schema::create('storeRequests', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('username');
             $table->integer('url_id');
             $table->string('IP_Address');
             $table->json('headers');

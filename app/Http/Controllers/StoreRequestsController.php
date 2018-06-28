@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\requestHub;
 use App\domain;
+use App\Jobs\Broadcast;
 use Illuminate\Support\Facades\Auth;
 
 class StoreRequestsController extends Controller
@@ -235,7 +236,7 @@ public function headersOfRequest3($user, $id){
          if(!empty($validate1)&&(!empty($validate2))) {
             //store request
             $sr=new requestHub;
-            
+            $sr->username=$User;
             $sr->url_id=$binName.".".$User;
             $sr->IP_Address=$request->ip();
             $sr->method=$request->method();
@@ -248,6 +249,11 @@ public function headersOfRequest3($user, $id){
             $sr->request_body=json_encode($request->getContent());
             $sr->save();
             echo "Request saved!";
+
+            //fire request event to be broadcasted
+            //event(new Request(get_object_vars($request)));
+            //dispatch the job
+            Broadcast::dispatch($request);
             }
             else {
               echo "Error! subdomain does not exist";

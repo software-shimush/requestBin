@@ -15,6 +15,7 @@ class RequestHub extends Migration
     {
         Schema::create('requestHubs', function (Blueprint $table) {
             $table->increments('id');
+           
             $table->string('url_id');
             $table->string('IP_Address');
             $table->json('headers');

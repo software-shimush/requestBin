@@ -8,7 +8,8 @@
         <br>
         <ul>
         @foreach ($header as $key=>$value)
-            <li><?php echo $key. ": ". $value[0]; ?></li>
+            <li><?php echo $key. ": ". str_replace(",","  ,  ",
+$value[0]); ?></li>
             <br>
        @endforeach
 
