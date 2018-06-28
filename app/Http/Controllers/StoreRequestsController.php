@@ -197,7 +197,6 @@ public function headersOfRequest3($user, $id){
         $domain=$binName.".".$User;
         //echo $domain;
         $requests=requestHub::where('url_id',"=",$domain )->get();
-        
           return view('show_requests')->with('requests', $requests );
         }
         else{
