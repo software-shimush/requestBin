@@ -63,7 +63,19 @@
                     </form>
                 </div>
             </div>
-        </div>
+        </div>   
+    </div>
+    <hr>
+    <div class="row justify-content-center">
+    <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">{{ __('Not yet registered?') }}</div>
+
+                <div class="card-body">
+                <a class="btn btn-info" href="{{ route('register') }}">{{ __('Register') }}</a>
+                </div>
+            </div>
+        </div> 
     </div>
 </div>
 @endsection

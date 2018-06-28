@@ -13,8 +13,20 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    You are logged in!
+                    <div class="row text-center">
+                        <div class="col-sm-12">
+                Welcome to our website Request Bin. Here you can create a personal url to store all your requests and view them at a later time.
+                You can access your bins at either requestbin.local or /username/requestbin.local.
+</div>    
+            </div>
+                <div id="btnRow" class="row text-center">
+                    <div class="col-sm-6">
+                        <a class="btn btn-info" href="{{ url('/getBins') }}">{{ __('View Bins') }}</a>
+                    </div>
+                    <div class="col-sm-6">
+                        <a class="btn btn-info" href="{{ url('/createBin') }}">{{ __('Create Bin') }}</a>
+                    </div>     
+                </div>
                 </div>
             </div>
         </div>
