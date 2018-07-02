@@ -11,6 +11,7 @@
     <th>Request Body</th>
     <th>Query Keys</th>
     <th>Query Value</th>
+    <th>Time</th>
     <th>Headers</th>
     <th>Delete</th>
     
@@ -27,6 +28,7 @@
  <td><?php echo $request['request_body']; ?> </td>
  <td><?php echo $request['query_keys']; ?> </td>
  <td><?php echo $request['query_values']; ?> </td>
+ <td><?php echo $request['created_at']; ?> </td>
  <td> <a href= "headers/<?php echo $request['id'];?> " > <button class="btn btn-info" type="submit" name="submit" id="<?php echo $request['id'];?>"  value="">VIEW HEADERS</button></a></td>
  <td> <button class="btn btn-info delete" type="submit" name="submit" id="<?php echo $request['id'];?>" value="">Delete</button></td>
 </tr>
