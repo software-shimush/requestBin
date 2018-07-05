@@ -39,7 +39,9 @@ class RequestListener implements ShouldQueue
         //foreach($_SESSION['array'] as $request){
            //echo $request->method(); 
            
-        dd($_SESSION['array']);
+       // dd($_SESSION['array']);
+        
+
            
 }
 

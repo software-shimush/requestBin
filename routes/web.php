@@ -34,7 +34,8 @@ Route::domain('{binName}.{User}.requestBin.local')->group(function () {
      Route::any('/getRequests', 'StoreRequestsController@getRequests');
      Route::get('/getHeaders', 'HeadersController@getHeaders' );
      Route::get('/headers/{id}', 'HeadersController@headersOfRequest');
-     
+     Route::view('/listen','liveRequest');
+    
     });
     
 

@@ -15,15 +15,15 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 class Requests implements ShouldBroadcastNow
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
-    public $httpR;
+    public $http;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($httpR)
+    public function __construct($http)
     {
-       $this->httpR = $httpR;
+       $this->http = $http;
     }
 
     /**

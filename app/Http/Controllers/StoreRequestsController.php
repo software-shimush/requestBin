@@ -8,9 +8,16 @@ use App\domain;
 use App\Jobs\Broadcast;
 use Illuminate\Support\Facades\Auth;
 use App\Events\Requests;
+use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\Serializer\Encoder\XmlEncoder;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+//use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+
 
 class StoreRequestsController extends Controller
 { protected $requests;
+
+
     /**
      * Display a listing of the resource.
      *
@@ -112,7 +119,10 @@ class StoreRequestsController extends Controller
     {
         //$binName=Route::current()->parameter('binName');
         //$User=Route::current()->parameter('User');
+       // $encoders = array(new XmlEncoder(), new JsonEncoder());
+      // $normalizers = array(new ObjectNormalizer());
 
+       //$serializer = new Serializer($normalizers, $encoders);
 
          //validate that the user and binName exists in table domains
         $validate1=domain::where('user',$User);
@@ -130,15 +140,25 @@ class StoreRequestsController extends Controller
             
             $sr->query_values=implode( $request->query(), ',');
             $sr->query_keys=implode( $request->keys(), ',');
-            $sr->request_body=json_encode($request->getContent());
+            $sr->request_body=json_encode(urldecode($request->getContent()));
             $sr->save();
             echo "Request saved!";
            // $httpR='testing laravel broadcasting with pusher to our view /listen';
             //fire request event to be broadcasted
            // get_object_vars  turns object into array
-            event(new Requests(get_object_vars ($request)));
-            //var_dump(get_object_vars ($request));
+            //event(new Requests(get_object_vars ($request)));
             
+            //$jsonR = $serializer->serialize($request, 'json');
+            //get the request data, turn it into a $array and broadcast it
+           $query=$request->query->all();
+           $post=urldecode($request->getContent());
+           //$host=$request->server->get('HTTP_HOST');
+           $url = urldecode($request->fullUrl());
+           $method = $request->method();
+           //$time=$request->server->get('REQUEST_TIME');
+           $time = date('Y/m/d H:i:s');
+            $array=['method'=>$method,'url'=>$url, 'query'=>$query,'body'=>$post, 'time'=>$time];
+            event(new Requests($array));
             }
             else {
               echo "Error! subdomain does not exist";
