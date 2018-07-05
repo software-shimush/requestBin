@@ -15,24 +15,27 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
-Vue.component('RequestComponent', require('./components/RequestComponent.vue'));
+//Vue.component('example-component', require('./components/ExampleComponent.vue'));
+Vue.component('request-component', require('./components/request-component.vue'));
+//Vue.component('request-listener', require('./components/request-listener.vue'));
 
 const app = new Vue({
     el: '#app',
     data: {
-        requests: []
+        requests: [],
+        
     },
     created(){
+        
         Echo.channel('Live_requests')
-        .listen('request', (e) => {
-            
-            console.log(e);
+        .listen('Requests', (e) => {
+            console.dir(e);
+            //alert('echo listener is working');
             this.requests.push({
-                request: e.htppR
+                http: e.http
                 
               });
-            
+            console.dir(this.requests);
         });
     
     },
