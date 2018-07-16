@@ -11,11 +11,13 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
+use Illuminate\Support\Facades\Auth;
 
 class Requests implements ShouldBroadcastNow
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
     public $http;
+   
     /**
      * Create a new event instance.
      *
@@ -24,6 +26,7 @@ class Requests implements ShouldBroadcastNow
     public function __construct($http)
     {
        $this->http = $http;
+       
     }
 
     /**
@@ -33,7 +36,16 @@ class Requests implements ShouldBroadcastNow
      */
     public function broadcastOn()
     {
-        //return new PrivateChannel('request'.$this->request->url_id);
+        
+        
         return new Channel('Live_requests');
+      /* if(Auth::user()) {
+            $loggedIn=Auth::user();
+            $user=$loggedIn['name'];
+        return new PrivateChannel('Private.'.$user);
+      }
+      */ 
+        
     }
 }
+

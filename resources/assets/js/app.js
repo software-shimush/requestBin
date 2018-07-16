@@ -24,6 +24,7 @@ const app = new Vue({
     data: {
         requests: [],
         
+        
     },
     created(){
         
@@ -37,7 +38,17 @@ const app = new Vue({
               });
             console.dir(this.requests);
         });
-    
+
+     /*   Echo.private('private-Private.nachmanrosen')
+        .listen('Requests', (e) => {
+            console.dir(e);
+            alert('private echo listener is working');
+            this.requests.push({
+                http: e.http
+                
+              });
+            console.dir(this.requests);
+        });  */
     },
    
 });
