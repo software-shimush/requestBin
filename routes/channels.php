@@ -1,4 +1,6 @@
 <?php
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Broadcasting\PrivateChannel;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +16,39 @@
 Broadcast::channel('App.User.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
 });
-Broadcast::channel('request.{url_id}', function ($User, $request) {
-    return $User->name===$request->username;
+
+
+Broadcast::channel('Private.{username}', function ($user, $username) {
+    return true;  // all loggedin users will have access
+    //$user->name===$username;
+   
 });
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+   

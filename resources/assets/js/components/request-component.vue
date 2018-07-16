@@ -2,16 +2,14 @@
     <div>
     <div v-for="http in requests" >
     
-    <table >
-    <tr v-for="(value, key) in http">
-    <th>{{ key }}</th>
-    </tr>
-    <tr v-for="(value, key) in http">
-    <td> {{ value }} </td>
-       </tr> 
-   </table>
+    
+    <ul v-for="(value,key) in http">
+    <li> {{  value }} </li>
+   </ul>
+     
     </div>
     </div>
+    
 </template>
 
 <script>

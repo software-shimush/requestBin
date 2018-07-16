@@ -13913,6 +13913,17 @@ var app = new Vue({
             });
             console.dir(_this.requests);
         });
+
+        /*   Echo.private('private-Private.nachmanrosen')
+           .listen('Requests', (e) => {
+               console.dir(e);
+               alert('private echo listener is working');
+               this.requests.push({
+                   http: e.http
+                   
+                 });
+               console.dir(this.requests);
+           });  */
     }
 });
 
@@ -52474,8 +52485,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['requests']
@@ -52492,21 +52501,12 @@ var render = function() {
   return _c(
     "div",
     _vm._l(_vm.requests, function(http) {
-      return _c("div", [
-        _c(
-          "table",
-          [
-            _vm._l(http, function(value, key) {
-              return _c("tr", [_c("th", [_vm._v(_vm._s(key))])])
-            }),
-            _vm._v(" "),
-            _vm._l(http, function(value, key) {
-              return _c("tr", [_c("td", [_vm._v(" " + _vm._s(value) + " ")])])
-            })
-          ],
-          2
-        )
-      ])
+      return _c(
+        "div",
+        _vm._l(http, function(value, key) {
+          return _c("ul", [_c("li", [_vm._v(" " + _vm._s(value) + " ")])])
+        })
+      )
     })
   )
 }
