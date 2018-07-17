@@ -1,7 +1,7 @@
 <template>
     <div>
-    
-    <div v-for="http in requests" >
+    <p>this is my private request channel</p>
+     <div v-for="http in myrequests" >
     
     
     <ul v-for="(value,key) in http">
@@ -9,14 +9,13 @@
    </ul>
      
     </div>
-     
     </div>
     
 </template>
 
 <script>
   export default {
-    props: ['requests']
+    props: [ 'myrequests']
   };
   
 </script>

@@ -35,6 +35,7 @@ Route::domain('{binName}.{User}.requestBin.local')->group(function () {
      Route::get('/getHeaders', 'HeadersController@getHeaders' );
      Route::get('/headers/{id}', 'HeadersController@headersOfRequest');
      Route::view('/listen','liveRequest');
+     Route::view('/private','private');
     
     });
     

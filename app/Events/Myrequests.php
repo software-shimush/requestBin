@@ -1,8 +1,7 @@
 <?php
 
 namespace App\Events;
-//use App\Jobs\Broadcast;
-//use Illuminate\Http\Request;
+
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Broadcasting\PrivateChannel;
@@ -10,14 +9,13 @@ use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
-use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 
-class Requests implements ShouldBroadcastNow
+class Myrequests implements ShouldBroadcastNow
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
     public $http;
-   
     /**
      * Create a new event instance.
      *
@@ -28,6 +26,8 @@ class Requests implements ShouldBroadcastNow
        $this->http = $http;
        
     }
+        
+    
 
     /**
      * Get the channels the event should broadcast on.
@@ -36,12 +36,10 @@ class Requests implements ShouldBroadcastNow
      */
     public function broadcastOn()
     {
-        
-        
-        return new Channel('Live_requests');
-     
-      
-        
+          if(Auth::user()) {
+            $loggedIn=Auth::user();
+            $user=$loggedIn['name'];
+        return new PrivateChannel('Personal.'.$user);
+      }
     }
 }
-

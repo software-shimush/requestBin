@@ -8,6 +8,7 @@ use App\domain;
 use App\Jobs\Broadcast;
 use Illuminate\Support\Facades\Auth;
 use App\Events\Requests;
+use App\Events\Myrequests;
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
@@ -159,6 +160,7 @@ class StoreRequestsController extends Controller
            $time = date('Y/m/d H:i:s');
             $array=['method'=>$method,'url'=>$url, 'query'=>$query,'body'=>$post, 'time'=>$time];
             event(new Requests($array));
+            event(new Myrequests($array));
             }
             else {
               echo "Error! subdomain does not exist";
