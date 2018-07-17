@@ -41,7 +41,7 @@ const app = new Vue({
             console.dir(this.requests);
         });
 
-        Echo.private('private-Personal.nachmanrosen')
+        Echo.private('Personal.nachmanrosen')
         .listen('Myrequests', (e) => {
             console.dir(e);
             alert('private echo listener is working');

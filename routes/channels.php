@@ -19,8 +19,8 @@ Broadcast::channel('App.User.{id}', function ($user, $id) {
 
 
 Broadcast::channel('Personal.{username}', function ($user, $username) {
-   // return $user->name==$username;
-   return true;
+    return $user->name==$username;
+   //return true;
     
    
 });

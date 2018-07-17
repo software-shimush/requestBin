@@ -14025,7 +14025,7 @@ var app = new Vue({
             console.dir(_this.requests);
         });
 
-        Echo.private('private-Personal.nachmanrosen').listen('Myrequests', function (e) {
+        Echo.private('Personal.nachmanrosen').listen('Myrequests', function (e) {
             console.dir(e);
             alert('private echo listener is working');
             _this.myrequests.push({
@@ -52472,6 +52472,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
 //
 //
 //
