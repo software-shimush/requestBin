@@ -18,9 +18,10 @@ Broadcast::channel('App.User.{id}', function ($user, $id) {
 });
 
 
-Broadcast::channel('Private.{username}', function ($user, $username) {
-    return true;  // all loggedin users will have access
-    //$user->name===$username;
+Broadcast::channel('Personal.{username}', function ($user, $username) {
+   // return $user->name==$username;
+   return true;
+    
    
 });
     

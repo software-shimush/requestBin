@@ -18,11 +18,13 @@ window.Vue = require('vue');
 //Vue.component('example-component', require('./components/ExampleComponent.vue'));
 Vue.component('request-component', require('./components/request-component.vue'));
 //Vue.component('request-listener', require('./components/request-listener.vue'));
+Vue.component('privatecomponent', require('./components/privatecomponent.vue'));
 
 const app = new Vue({
     el: '#app',
     data: {
         requests: [],
+        myrequests: []
         
         
     },
@@ -39,16 +41,16 @@ const app = new Vue({
             console.dir(this.requests);
         });
 
-     /*   Echo.private('private-Private.nachmanrosen')
-        .listen('Requests', (e) => {
+        Echo.private('private-Personal.nachmanrosen')
+        .listen('Myrequests', (e) => {
             console.dir(e);
             alert('private echo listener is working');
-            this.requests.push({
+            this.myrequests.push({
                 http: e.http
                 
               });
-            console.dir(this.requests);
-        });  */
+            console.dir(this.myrequests);
+        });  
     },
    
 });

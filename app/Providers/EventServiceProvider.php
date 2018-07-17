@@ -19,6 +19,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\Requests'=>[
             'App\Listeners\RequestListener'
         ],
+        'App\Events\Myrequests'=>[
+            'App\Listeners\MyrequestListener'
+        ],
         
     ];
 
